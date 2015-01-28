@@ -1,5 +1,7 @@
 # hubot-remind-at
 
+[![wercker status](https://app.wercker.com/status/00dc5a40973104fd3039c21ce646948f/s "wercker status")](https://app.wercker.com/project/bykey/00dc5a40973104fd3039c21ce646948f)
+
 yet another remind.coffee of hubot scripts
 
 ## Usage
