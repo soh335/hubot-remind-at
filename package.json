@@ -20,10 +20,11 @@
     "node-uuid": "^1.4.2"
   },
   "devDependencies": {
+    "chai": "*",
     "coffee-script": "^1.8.0",
     "hubot": "*",
-    "mocha": "*",
-    "hubot-test-helper": "*"
+    "hubot-test-helper": "*",
+    "mocha": "*"
   },
   "homepage": "https://github.com/soh335/hubot-remind-at"
 }
