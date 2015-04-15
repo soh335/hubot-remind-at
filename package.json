@@ -25,7 +25,8 @@
     "hubot": "*",
     "hubot-test-helper": "*",
     "mocha": "*",
-    "power-assert": "^0.10.1"
+    "power-assert": "^0.10.1",
+    "sinon": "^1.14.1"
   },
   "homepage": "https://github.com/soh335/hubot-remind-at"
 }

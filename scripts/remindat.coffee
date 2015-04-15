@@ -7,6 +7,7 @@ chrono = require('chrono-node')
 uuid   = require('node-uuid')
 
 class Reminders
+
   constructor: (@robot) ->
     @robot.brain.data.reminder_at ?= {}
     @robot.brain.on 'loaded', =>
@@ -26,8 +27,15 @@ class Reminders
     @robot.logger.debug("add id:#{id}")
 
     setTimeout =>
-      @robot.reply reminder.envelope, "you asked me to remind you to #{reminder.action}"
-      @remove(id)
+      diff = reminder.diff()
+
+      @robot.logger.debug("diff:#{diff}")
+
+      if diff > 0
+        @queue(reminder, id)
+      else
+        @robot.reply reminder.envelope, "you asked me to remind you to #{reminder.action}"
+        @remove(id)
     , reminder.diff()
 
     @robot.brain.data.reminder_at[id] = reminder
@@ -38,11 +46,18 @@ class Reminders
 
 class ReminderAt
 
+  MAX_SETTIMEOUT = 2147483647 # ms https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout#Minimum.2Fmaximum_delay_and_timeout_nesting
+
   constructor: (@envelope, @date, @action) ->
 
   diff: ->
     now = new Date().getTime()
-    (@date.getTime()) - now
+    diff = (@date.getTime()) - now
+
+    if diff > MAX_SETTIMEOUT
+      diff = MAX_SETTIMEOUT
+
+    diff
 
 module.exports = (robot) ->
   reminders = new Reminders robot
