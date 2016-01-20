@@ -20,12 +20,13 @@
     "node-uuid": "^1.4.2"
   },
   "devDependencies": {
+    "co": "^4.6.0",
     "coffee-script": "^1.8.0",
-    "espower-coffee": "^0.10.0",
+    "espower-coffee": "^1.0.1",
     "hubot": "*",
     "hubot-test-helper": "*",
     "mocha": "*",
-    "power-assert": "^0.10.1",
+    "power-assert": "^1.2.0",
     "sinon": "^1.14.1"
   },
   "homepage": "https://github.com/soh335/hubot-remind-at"
