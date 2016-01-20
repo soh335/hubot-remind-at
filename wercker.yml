@@ -1,5 +1,8 @@
-box: wercker/nodejs
 # Build definition
+box:
+  id: nodesource/trusty
+  env:
+    NODE_ENV: test
 build:
   # The steps that will be executed on build
   steps:
