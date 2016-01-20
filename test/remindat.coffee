@@ -19,8 +19,9 @@ describe 'ReminderAt Hubot', ->
 
     it 'chrono formats specified with "at" are parsed', ->
       # Example taken from http://wanasit.github.io/pages/chrono/
+      d = new Date("2513-08-17 12:00:00")
       assert.deepEqual @room.messages[1], [
-        "hubot", "I'll remind you to do task at 2513-08-17 12:00:00"
+        "hubot", "I'll remind you to do task at #{d.toLocaleString()}"
       ]
 
   context 'not over max', ->
