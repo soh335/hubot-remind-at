@@ -9,10 +9,7 @@ co     = require 'co'
 describe 'ReminderAt Hubot', ->
 
   beforeEach ->
-    @room = helper.createRoom()
-
-  afterEach ->
-    @room.destroy()
+    @room = helper.createRoom(httpd: false)
 
   context 'formats', ->
 
