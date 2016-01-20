@@ -9,15 +9,21 @@ uuid   = require('node-uuid')
 class Reminders
 
   constructor: (@robot) ->
+    if @robot.brain.data
+      @sync_brain()
+    else
+      @robot.brain.on 'loaded', =>
+        @sync_brain()
+
+  sync_brain: ->
     @robot.brain.data.reminder_at ?= {}
-    @robot.brain.on 'loaded', =>
-        reminder_at = @robot.brain.data.reminder_at
-        for own id, o of reminder_at
-          reminder = new ReminderAt o.envelope, new Date(o.date), o.action
-          if reminder.diff() > 0
-            @queue(reminder, id)
-          else
-            @remove(id)
+    reminder_at = @robot.brain.data.reminder_at
+    for own id, o of reminder_at
+      reminder = new ReminderAt o.envelope, new Date(o.date), o.action
+      if reminder.diff() > 0
+        @queue(reminder, id)
+      else
+        @remove(id)
 
   queue: (reminder, id) ->
 
