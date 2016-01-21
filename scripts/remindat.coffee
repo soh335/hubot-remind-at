@@ -68,13 +68,13 @@ class ReminderAt
 module.exports = (robot) ->
   reminders = new Reminders robot
 
-  robot.respond /remind me at (.+) to (.*)/i, (msg) ->
+  robot.respond /remind( me)? at (.+) to (.*)/i, (msg) ->
     time = msg.match[1]
     action = msg.match[2]
 
     results = chrono.parse(time)
 
-    if results.length < 1
+    if results.length < 2
       msg.send "can't parse #{time}"
       return
 
